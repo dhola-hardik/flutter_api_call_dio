@@ -1,5 +1,6 @@
 
 # API call demo
+This demo is to get API data using Dio package and I have also used GetX package for state management. I have implemented two ways to display data using Getx controller and setstate. Register at <a href='https://www.themoviedb.org/documentation/api'>The Movie Db</a> to get your API key.
 
 ## Get The APK:
 
