@@ -26,16 +26,9 @@ class ApiUtils {
 
   Map<String, String> header = {"Content-Type": "application/json"};
 
-  Map<String, String> headers = {
-    "Content-Type": "application/json",
-    "api-version": "1"
-  };
+  Map<String, String> headers = {"Content-Type": "application/json", "api-version": "1"};
 
-  Map<String, String> secureHeaders = {
-    "Content-Type": "application/json",
-    "api-version": "1",
-    "Authorization": ""
-  };
+  Map<String, String> secureHeaders = {"Content-Type": "application/json", "api-version": "1", "Authorization": ""};
 
   Future<Response> get({
     required String url,
@@ -123,36 +116,38 @@ class ApiUtils {
     Log.loga(title, "handleError:: error >> $error");
 
     if (error is DioError) {
-      Log.loga(
-          title, '************************ DioError ************************');
+      Log.loga(title, '************************ DioError ************************');
 
       DioError dioError = error as DioError;
       Log.loga(title, 'dioError:: $dioError');
       if (dioError.response != null) {
-        Log.loga(
-            title, "dioError:: response >> " + dioError.response.toString());
+        Log.loga(title, "dioError:: response >> " + dioError.response.toString());
       }
 
       switch (dioError.type) {
-        case DioErrorType.other:
-          errorDescription =
-              "Connection to API server failed due to internet connection";
-          break;
         case DioErrorType.cancel:
           errorDescription = "Request to API server was cancelled";
-          break;
-        case DioErrorType.connectTimeout:
-          errorDescription = "Connection timeout with API server";
           break;
         case DioErrorType.receiveTimeout:
           errorDescription = "Receive timeout in connection with API server";
           break;
-        case DioErrorType.response:
-          errorDescription =
-              "Received invalid status code: ${dioError.response?.statusCode}";
-          break;
         case DioErrorType.sendTimeout:
           errorDescription = "Send timeout in connection with API server";
+          break;
+        case DioErrorType.connectionTimeout:
+          errorDescription = "Connection timeout with API server";
+          break;
+        case DioErrorType.badCertificate:
+          errorDescription = 'Caused by an incorrect certificate';
+          break;
+        case DioErrorType.badResponse:
+          errorDescription = "Received invalid status code: ${dioError.response?.statusCode}";
+          break;
+        case DioErrorType.connectionError:
+          errorDescription = 'Caused for example by a `xhr.onError` or SocketExceptions.';
+          break;
+        case DioErrorType.unknown:
+          errorDescription = "Connection to API server failed due to internet connection";
           break;
       }
     } else {

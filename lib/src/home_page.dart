@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_api_call_dio/res/app_color.dart';
-import 'package:flutter_api_call_dio/res/strings.dart';
 import 'package:flutter_api_call_dio/utils/my_application.dart';
 import 'package:flutter_api_call_dio/utils/widget_util.dart';
-import 'package:flutter_api_call_dio/widgets/custom_appbar.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 
@@ -13,7 +11,6 @@ import '../widgets/keep_alive_page.dart';
 import 'tabs/home_tab.dart';
 import 'tabs/movie_tab.dart';
 import 'widgets/item_bottom_bar.dart';
-import 'widgets/item_product.dart';
 
 final title = "HomePage";
 
@@ -48,8 +45,7 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
         child: Scaffold(
           extendBody: true,
           body: _buildBody(),
-          floatingActionButtonLocation:
-              FloatingActionButtonLocation.centerDocked,
+          floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
           floatingActionButton: _buildFAB(),
           bottomNavigationBar: _buildBottomBar(),
         ),

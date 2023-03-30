@@ -9,21 +9,27 @@ import 'utils/theme_util.dart';
 
 void main() async {
   await initApp();
-  runApp(MyApp());
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
-      designSize: Size(1080, 1920),
-      builder: () {
+      designSize: const Size(1080, 1920),
+      builder: (ctx, child) {
         return GetMaterialApp(
           debugShowCheckedModeBanner: false,
           title: strings.app_name,
           theme: appTheme,
           defaultTransition: Transition.cupertino,
-          home: HomePage(),
+          // home: HomePage(),
+          initialRoute: '/',
+          getPages: [
+            GetPage(name: '/', page: () => HomePage()),
+          ],
         );
       },
     );
